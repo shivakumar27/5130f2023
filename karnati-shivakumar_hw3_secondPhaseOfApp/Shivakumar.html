@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SHIVAKUMAR KARNATI</title>
+    <style>
+        body {
+            background-color: rgb(150, 158, 125);
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+       }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+        p {
+            text-align: center;
+            margin: 20px;
+
+        }
+
+        ul {
+            list-style-type: square;
+            text-align: left;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: left;
+            font-size: 16px;
+            margin-top: 10px
+        }
+
+        dl {
+            margin: 20px;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 20px auto;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hide by default */
+        #instagram-link, #linkedin-link {
+            display: none;
+        }
+        .user-details {
+            position: absolute;
+            top: 10px; 
+            right: 10px; 
+        }
+        .feedback-button{
+            position: absolute;
+            top: 10px; 
+            right: 100px;  
+          
+        }
+        .portfolio-button{
+            position: absolute;
+            top: 10px; 
+            right: 170px;  
+          
+        }
+    </style>
+</head>
+<body>
+
+<h1>Shivakumar Karnati</h1>
+<img src="iws_picture.jpeg" alt="Shivakumar Karnati" width="300" height="400">
+<p>I am Shivakumar Karnati, a student at the University of Massachusetts Lowell pursuing a Masters in Computer Science. My hobbies include listening to music, cooking, and watching movies. I am also passionate about traveling and exploring different places.</p>
+
+<ul>
+    <h2>Technical Skills</h2>
+    <li>Core Java, C</li>
+    <li>Mysql, Spring Framework</li>
+    <li>HTML, JavaScript</li>
+</ul>
+
+<dl>
+    <dt><b>My favorite places</b></dt>
+    <dd>- Niagara Falls-USA, Hyderabad-India</dd>
+    <dt><b>My favorite food</b></dt>
+    <dd>- Biryani, Cheese pizza</dd>
+</dl>
+
+<!-- Radio buttons -->
+<h4><b>&nbsp;&nbsp;&nbsp;&nbsp;Know more about me</b></h4>
+<input type="radio" name="social" value="instagram" id="instagram-radio"> Instagram
+<input type="radio" name="social" value="linkedin" id="linkedin-radio"> LinkedIn
+
+<!-- Links -->
+<div id="linkedin-link">
+    <a href="https://www.linkedin.com/in/shivakumar-karnati-6472671a9/" target="_blank">LinkedIn Profile</a>
+</div>
+
+<div id="instagram-link">
+    <a href="https://instagram.com/__.shiva_kumar.__?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" target="_blank">Instagram Profile</a>
+</div>
+
+
+
+<!-- Link to course page -->
+<p>For more information about my coursework, you can visit my <a href="https://cs.uml.edu/~skarnati/5130f2023/" target="_blank">course page</a>.</p>
+
+
+
+    <button onclick="redirectToUserDetails()" class="user-details">User Details</button>
+    <button onclick="redirectTofeedback()" class="feedback-button">feedback</button>
+    <button onclick="redirectToInvestmentPortfolio()" class="portfolio-button">Portfolio</button>
+
+
+<script>
+    // JavaScript to show/hide elements based on user selection
+    const instagramRadio = document.getElementById('instagram-radio');
+    const linkedinRadio = document.getElementById('linkedin-radio');
+    const instagramLink = document.getElementById('instagram-link');
+    const linkedinLink = document.getElementById('linkedin-link');
+
+    instagramRadio.addEventListener('change', () => {
+        if (instagramRadio.checked) {
+            instagramLink.style.display = 'block';
+            linkedinLink.style.display = 'none';
+        }
+    });
+
+    linkedinRadio.addEventListener('change', () => {
+        if (linkedinRadio.checked) {
+            linkedinLink.style.display = 'block';
+            instagramLink.style.display = 'none';
+        }
+    });
+    // JavaScript function to redirect to the user details page
+    function redirectToUserDetails() {
+            window.location.href = "user_details.html";
+        }
+    function redirectTofeedback() {
+            window.location.href = "feedback.html";
+        }
+    function redirectToInvestmentPortfolio() {
+            window.location.href = "InvestmentPortfolio.html";
+        }
+</script>
+
+</body>
+</html>
