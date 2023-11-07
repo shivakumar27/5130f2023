@@ -1,0 +1,14 @@
+Internet and Web Systems
+
+Project report - 1
+
+Project Title: Smart Calorie Analyser
+
+Team members: Shivakumar Karnati, Ranjitha Meela, Jayasree Dondapati
+
+I had developed a sign up page and tried to validate fields in the page also helped my team mates to develop the remaining pages i.e, home page, login page and calorie calculator page. Till now we developed html pages for project to get basic idea about adding scripts and other features to the fields and pages. For now, we did not validate the username, email, password in login/sign up page and weight, height, activity level and other fields in calorie calculator page . After user sign in/sign up, the calorie calculator page displays but as we did not validated user information we just included calorie calculator page button on the homepage itself. In further project reports, we will update all remaining things and take our project to next step by validating fields and adding other pages based on proposal.
+
+
+What Am I proud about:
+
+I've successfully developed the frontend of our project using HTML, CSS, and JavaScript. I had developed a sign up page and tried to validate fields in the page also helped my team mates to develop the remaining pages i.e, home page, login page and calorie calculator page.

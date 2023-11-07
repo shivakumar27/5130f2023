@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="login-page.js"></script>
+</head>
+
+<body>
+  <main id="main-holder">
+    <h1 id="login-header">Login</h1>
+    
+    <div id="login-error-msg-holder">
+      <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+    </div>
+    
+   <form id="login-form">
+      <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username"> <br>
+      <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+      <input type="submit" value="Login" id="login-form-submit">
+    </form>
+    
+    <div class="wrapper">
+       <!-- <form id="login-form">
+            <h2>Login</h2>
+            <div class="input-group">
+                <span class="icon">
+                    <ion-icon name="person"></ion-icon>
+                </span>
+                <input type="text" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <span class="icon">
+                    <ion-icon name="lock-closed"></ion-icon>
+                </span>
+                <input type="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn">Login</button> 
+            <div class="forgot-pass">
+                <a href="#" onclick="showResetPasswordForm()">Forgot Password?</a>
+            </div> -->
+            <div class="sign-link">
+                <p>Don't have an account? <a href="#" onclick="showSignupForm()">Register</a></p>
+            </div>
+        </form>
+    
+        <form id="signup-form" style="display: none;">
+            <h2>Register</h2>
+            <div class="input-group">
+                <span class="icon">
+                    <ion-icon name="person"></ion-icon>
+                </span>
+                <input type="text" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <span class="icon">
+                    <ion-icon name="mail"></ion-icon>
+                </span>
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <span class="icon">
+                    <ion-icon name="lock-closed"></ion-icon>
+                </span>
+                <input type="password" placeholder="Password" required>
+            </div>
+            <div class="input-group">
+                <span class="icon">
+                    <ion-icon name="lock-closed"></ion-icon>
+                </span>
+                <input type="password" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="btn">Register</button>
+            <div class="back-to-login">
+                <a href="#" onclick="showLoginForm()">Back to Login</a>
+            </div>
+        </form>
+    </div>
+    <div class="forgot-pass" id="forgot-password" style="display: none;">
+        <p>Forgot Password? <a href="#" onclick="showResetPasswordForm()">Reset Password</a></p>
+    </div>
+    
+    <form id="reset-password-form" style="display: none;">
+        <h2>Reset Password</h2>
+        <div class="input-group">
+            <span class="icon">
+                <ion-icon name="mail"></ion-icon>
+            </span>
+            <input type="email" placeholder="Email" required>
+        </div>
+        <button type="submit" class="btn">Reset Password</button>
+        <div class="back-to-login">
+            <a href="#" onclick="showLoginForm()">Back to Login</a>
+        </div>
+    </form>
+        
+  
+  </main>
+</body>
+
+</html>
