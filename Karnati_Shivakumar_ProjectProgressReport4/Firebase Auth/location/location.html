@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> user Location </title>
+</head>
+<body>
+
+    <h1>Get User Location </h1>
+    
+    <button onclick="getLocation()">Get Location</button>
+
+    <p id="locationDetails"></p>
+
+    <script>
+        var apiKey = 'AIzaSyAjWd4YK3YPc5bYaBgJSQbcKopgFJWsuP4'; // Replace with your actual Google Maps API Key
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById("locationDetails").innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            var apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + apiKey;
+
+            // Make the reverse geocoding request to the Google Geocoding API
+            fetch(apiUrl)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                // Check if the expected properties are present in the response
+                if (result.results && result.results[0] && result.results[0].address_components) {
+                    // Extract city and state details
+                    var city, state;
+                    var addressComponents = result.results[0].address_components;
+                    for (var i = 0; i < addressComponents.length; i++) {
+                        var types = addressComponents[i].types;
+                        if (types.includes('locality')) {
+                            city = addressComponents[i].long_name;
+                        } else if (types.includes('administrative_area_level_1')) {
+                            state = addressComponents[i].long_name;
+                        }
+                    }
+
+                    // Display details in HTML
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    document.getElementById("locationDetails").innerHTML = `Latitude: ${latitude}<br>Longitude: ${longitude}<br>City: ${city}<br>State: ${state}`;
+                } else {
+                    document.getElementById("locationDetails").innerHTML = "Location details not available.";
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data from Google Geocoding API:', error);
+                document.getElementById("locationDetails").innerHTML = "Error getting location details.";
+            });
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById("locationDetails").innerHTML = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById("locationDetails").innerHTML = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById("locationDetails").innerHTML = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById("locationDetails").innerHTML = "An unknown error occurred.";
+                    break;
+            }
+        }
+    </script>
+
+</body>
+</html>
