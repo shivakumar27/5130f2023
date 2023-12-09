@@ -1,0 +1,58 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.video-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+.content-container {
+    position: absolute;
+    top: 60%;
+    left: 20%; /* Adjust this value to move the container to the left */
+    transform: translate(-50%, -50%);
+    width: 300px; /* Set a fixed width for the square container */
+    height: 300px; /* Set a fixed height for the square container */
+    background-color: rgb(255, 255, 255); /* White background with some transparency */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.content {
+    color: #000; /* Black text for better visibility on white background */
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.get-started-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #fff; /* White text for better visibility on the button */
+    background-color: #3498db;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.get-started-button:hover {
+    background-color: #29b4b9;
+}

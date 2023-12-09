@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Browse Tag</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="browse.css">
+    <div class="menu" onclick="window.location.href='Home.html';">
+        <img src="homelogo.png" alt="Home" width="30" height="30">
+    </div>
+</head>
+
+<body>
+    
+    <div>
+        <h1>Browse all Food</h1>
+    </div>
+    <div>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="searchCards()">Search</button>
+        <button onclick="clearSearch()">Clear</button>
+    </div>
+    <div class="container">
+        <div class="row" id="cardContainer"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+    <script>
+        const firebaseConfig = {
+  apiKey: "AIzaSyAY3K9Q57bNxMxVwnsCbc5GycyUnxFMi34",
+  authDomain: "fir-auth-8b5d9.firebaseapp.com",
+  databaseURL: "https://fir-auth-8b5d9-default-rtdb.firebaseio.com",
+  projectId: "fir-auth-8b5d9",
+  storageBucket: "fir-auth-8b5d9.appspot.com",
+  messagingSenderId: "602580300794",
+  appId: "1:602580300794:web:3a7e5858419a4ae02d6a43"
+};
+
+        firebase.initializeApp(firebaseConfig);
+        let db = firebase.firestore();
+
+        function GetAllDataRealtime() {
+            db.collection("NutritionalValues").onSnapshot((querySnapshot) => {
+                var cardContainer = document.getElementById('cardContainer');
+                cardContainer.innerHTML = ""; // Clear existing content
+                querySnapshot.forEach(doc => {
+                    var nutritionalData = doc.data();
+                    AddNutritionalCard(nutritionalData);
+                });
+            });
+        }
+
+        function AddNutritionalCard(nutritionalData) {
+            var cardContainer = document.getElementById('cardContainer');
+
+            var colDiv = document.createElement('div');
+            colDiv.className = 'col-md-4 mb-4';
+
+            var cardDiv = document.createElement('div');
+            cardDiv.className = 'card';
+
+            var image = document.createElement('img');
+            image.className = 'card-img-top';
+            image.src = nutritionalData.ImageURL;
+            image.alt = 'Food Image';
+            image.style.maxWidth = '200px';  // Set the desired max-width for the image
+
+            var cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            var title = document.createElement('h5');
+            title.className = 'card-title';
+            title.textContent = nutritionalData.Food;
+
+            var servingSize = document.createElement('p');
+            servingSize.className = 'card-text';
+            servingSize.textContent = 'Serving Size: ' + nutritionalData.ServingSize;
+
+            var calories = document.createElement('p');
+            calories.className = 'card-text';
+            calories.textContent = 'Calories: ' + nutritionalData.Calories;
+
+            var fat = document.createElement('p');
+            fat.className = 'card-text';
+            fat.textContent = 'Fat: ' + nutritionalData.Fat;
+
+            var carbohydrates = document.createElement('p');
+            carbohydrates.className = 'card-text';
+            carbohydrates.textContent = 'Carbohydrates: ' + nutritionalData.Carbohydrates;
+
+            var protein = document.createElement('p');
+            protein.className = 'card-text';
+            protein.textContent = 'Protein: ' + nutritionalData.Protein;
+
+            cardBody.appendChild(title);
+            cardBody.appendChild(servingSize);
+            cardBody.appendChild(calories);
+            cardBody.appendChild(fat);
+            cardBody.appendChild(carbohydrates);
+            cardBody.appendChild(protein);
+
+            cardDiv.appendChild(image);
+            cardDiv.appendChild(cardBody);
+
+            colDiv.appendChild(cardDiv);
+            cardContainer.appendChild(colDiv);
+        }
+
+        function searchCards() {
+            var input, filter, cardContainer, cards, card, title, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            cardContainer = document.getElementById("cardContainer");
+            cards = cardContainer.getElementsByClassName("card");
+
+            for (i = 0; i < cards.length; i++) {
+                card = cards[i];
+                title = card.querySelector('.card-title');
+                txtValue = title.textContent || title.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+        function clearSearch() {
+            document.getElementById("searchInput").value = "";
+            searchCards(); // Call searchCards to reset the display
+        }
+
+
+        window.onload = GetAllDataRealtime;
+
+        
+    </script>
+    
+</body>
+
+</html>
